@@ -51,7 +51,7 @@ Confirmed:
 * `real_time_protection_enabled: true`
 
 <p align="left">
-  <img src="assets/Screenshot 2026-02-11 084630.png" width="700">
+  <img src="assets/Screenshot 2026-02-11 094230.png" width="700">
   <img src="assets/Screenshot 2026-02-12 104359.png" width="700">
 </p>
 
