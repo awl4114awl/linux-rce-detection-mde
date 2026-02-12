@@ -133,7 +133,7 @@ This query correlates download activity with execution behavior.
 I validated the detection by rerunning the suspicious commands and confirming that the events were returned in Advanced Hunting.
 
 <p align="left">
-  <img src="assets/Screenshot 2026-02-11 134224.png" width="700">
+  <img src="assets/Screenshot 2026-02-12 105836.png" width="700">
   <img src="assets/Screenshot 2026-02-11 141606.png" width="700">
 </p>
 
