@@ -1,4 +1,4 @@
-# Linux RCE Detection Lab – Microsoft Defender for Endpoint
+# Linux RCE (Remote Code Execution) Detection Lab – Microsoft Defender for Endpoint
 
 ## Overview
 
