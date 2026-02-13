@@ -1,27 +1,33 @@
 # Linux RCE (Remote Code Execution) Detection Lab – Microsoft Defender for Endpoint
 
-## Overview
+## ⓘ Overview
 
-In this lab, I built a complete end-to-end detection workflow using:
+This lab was performed in [The Cyber Range](http://joshmadakor.tech/cyber-range), an Azure-hosted enterprise environment where I replicate real-world detection engineering and SOC workflows. For this scenario, I simulated remote code execution (RCE)-style behavior on a Red Hat Enterprise Linux (RHEL 9.4) virtual machine and analyzed how Microsoft Defender for Endpoint (MDE) captures, correlates, and alerts on suspicious command execution patterns.
 
-* Azure Red Hat Enterprise Linux (RHEL 9.4)
-* Microsoft Defender for Endpoint (MDE)
-* KQL (Kusto Query Language)
-* Custom Detection Rules
+To generate the signal, I executed a staged command sequence designed to mimic common Linux attacker tradecraft. The activity included downloading a file from an external source into the `/tmp` directory, modifying file permissions to make it executable, and attempting to execute it. This behavior mirrors how attackers frequently stage and run payloads during initial compromise or lateral movement attempts.
 
-The goal was to simulate attacker-like behavior on a Linux server and then design a detection that automatically alerts when that behavior occurs.
+Once the activity was generated, MDE immediately captured the corresponding process telemetry through `DeviceProcessEvents`. Using Advanced Hunting, I traced the full event chain, correlating the `curl` download with the subsequent `chmod` and `bash` execution attempts. By analyzing command-line arguments and timestamps, I validated that the behavior followed a clear download → stage → execute pattern rather than normal administrative activity.
 
-This project demonstrates how defensive monitoring can be built intentionally rather than relying only on default alerts.
+After confirming the detection logic through manual hunting, I operationalized the query by converting it into a custom detection rule. The rule correlates download and execution activity within a defined time window and generates an alert whenever the behavior reoccurs. This transforms a one-time hunt into an automated defensive control.
 
----
+This investigation demonstrates how I simulate attacker techniques on Linux systems, analyze endpoint telemetry in Microsoft Defender for Endpoint, correlate multi-step command execution patterns using KQL, and build custom detection rules that proactively alert on suspicious behavior.
 
-## Lab Environment
+## Environment Details
 
-* Cloud Platform: Microsoft Azure
-* OS: Red Hat Enterprise Linux 9.4
-* Web Service: Apache (httpd)
-* Security Platform: Microsoft Defender for Endpoint
-* Detection Language: KQL
+| Component    | Details                                 |
+| ------------ | --------------------------------------- |
+| VM Name      | jc-redhat                               |
+| OS Image     | Red Hat Enterprise Linux 9.4            |
+| Region       | East US 2                               |
+| VM Size      | Standard (Azure Marketplace RHEL image) |
+| Network      | Cyber-Range-Subnet (shared Azure VNet)  |
+| Public IP    | 20.98.221.175                           |
+| Subscription | LOG(N) Pacific – Cyber Range 1          |
+
+
+The [Cyber Range](https://www.skool.com/cyber-range/about?ref=e1dbc80baac24651ae3add002381aab3) is a shared, cloud-based enterprise training environment designed to simulate realistic network architectures and attack scenarios. Each participant operates within a common virtual network where controlled attack simulations can occur safely without affecting production systems.
+
+This VM represents a Linux server onboarded to Microsoft Defender for Endpoint (MDE). I used controlled command-line activity to simulate suspicious execution behavior, then used KQL within MDE Advanced Hunting to detect, correlate, validate, and operationalize the activity into an automated alert.
 
 ---
 
