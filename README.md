@@ -182,6 +182,3 @@ I did not rely on default alerts. Instead, I:
 * Enabled automated alerting
 
 This lab demonstrates how detection logic is built from behavior, validated against real telemetry, and operationalized into a functioning alert within Microsoft Defender for Endpoint.
-
-It represents a complete defensive workflow:
-Behavior → Log Collection → Query Development → Validation → Detection Rule → Alert Generation.
