@@ -2,7 +2,7 @@
 
 ## ⓘ Overview
 
-This lab was performed in [The Cyber Range](http://joshmadakor.tech/cyber-range), an Azure-hosted enterprise environment where I replicate real-world detection engineering and SOC workflows. For this scenario, I simulated remote code execution (RCE)-style behavior on a Red Hat Enterprise Linux (RHEL 9.4) virtual machine and analyzed how Microsoft Defender for Endpoint (MDE) captures, correlates, and alerts on suspicious command execution patterns.
+This lab was performed in [The Cyber Range](http://joshmadakor.tech/cyber-range), an Azure-hosted enterprise environment where I replicate real-world detection engineering and SOC workflows. For this scenario, I simulated remote code execution (RCE)-style behavior on a Red Hat Enterprise Linux virtual machine and analyzed how Microsoft Defender for Endpoint (MDE) captures, correlates, and alerts on suspicious command execution patterns.
 
 To generate the signal, I executed a staged command sequence designed to mimic common Linux attacker tradecraft. The activity included downloading a file from an external source into the `/tmp` directory, modifying file permissions to make it executable, and attempting to execute it. This behavior mirrors how attackers frequently stage and run payloads during initial compromise or lateral movement attempts.
 
